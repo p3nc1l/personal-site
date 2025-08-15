@@ -26,7 +26,7 @@ const Header = () => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
   return (
-    <div className="fixed w-full top-0">
+    <div className="sticky w-full top-0">
       <div className="w-full sm:p-2">
         <div className="w-full px-6 sm:px-12 py-2 bg-white/70 text-black backdrop-blur-sm sm:rounded-xs flex justify-between items-center">
           <Link href={"/"}>
@@ -36,7 +36,9 @@ const Header = () => {
           <div className="block sm:hidden"><HeaderSidebarButton sidebarVisible={sidebarVisible} toggleSidebar={setSidebarVisible} /></div>
         </div>
       </div>
-      <HeaderSidebar visible={sidebarVisible} links={navigationLinks} />
+      <div className="relative">
+        <HeaderSidebar visible={sidebarVisible} links={navigationLinks} />
+      </div>
     </div>
   )
 }

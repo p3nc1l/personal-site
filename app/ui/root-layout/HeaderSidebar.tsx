@@ -13,7 +13,7 @@ const HeaderSidebar = (props: {visible?: boolean, links: NavigationLink[]}) => {
   return (
     <AnimatePresence>
       {visible && <motion.div
-        className="w-full h-screen bg-white/70 text-black backdrop-blur-sm sm:hidden"
+        className="absolute w-full h-screen bg-white/70 text-black backdrop-blur-sm sm:hidden"
         initial={{x: "100vw"}}
         animate={{x: 0}}
         exit={{x: "100vw"}}
