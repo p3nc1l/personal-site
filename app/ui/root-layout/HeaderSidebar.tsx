@@ -7,13 +7,13 @@ const robotoMono = Roboto_Mono({
   subsets: ["latin"],
 })
 
-const HeaderSidebar = (props: {visible?: boolean, links: NavigationLink[]}) => {
+const HeaderSidebar = (props: {visible?: boolean, links: NavigationLink[], style?: string}) => {
   const visible = props.visible || false;
 
   return (
     <AnimatePresence>
       {visible && <motion.div
-        className="absolute w-full h-screen bg-white/70 text-black backdrop-blur-sm sm:hidden"
+        className={`absolute w-full h-screen sm:hidden ${props.style}`}
         initial={{x: "100vw"}}
         animate={{x: 0}}
         exit={{x: "100vw"}}
