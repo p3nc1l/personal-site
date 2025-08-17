@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <div className="w-full max-w-7xl mx-auto px-2">
+    <>
       <h1 className="text-5xl mt-2 mb-8">Projects</h1>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">
         {projects.map((project, index) => 
@@ -26,7 +26,7 @@ const Page = () => {
           </Card>
         )}
       </div>
-    </div>
+    </>
   )
 }
 
