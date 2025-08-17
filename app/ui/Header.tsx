@@ -112,7 +112,7 @@ const Header = () => {
       <div className="w-full sm:p-2">
         <div className={`w-full px-6 sm:px-12 py-2 ${headerStyle} sm:rounded-xs flex justify-between items-center`}>
           <Link href={"/"}>
-            <span className="font-bold text-2xl">p3nc1l</span>
+            <span className="font-bold text-2xl">David Szocs</span>
           </Link>
           <span className="hidden sm:inline"><HeaderNavigation /></span>
           <div className="block sm:hidden"><HeaderSidebarButton sidebarVisible={sidebarVisible} toggleSidebar={setSidebarVisible} /></div>

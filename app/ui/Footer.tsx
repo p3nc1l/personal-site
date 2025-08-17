@@ -27,7 +27,7 @@ const Footer = () => {
       <div className="w-full border-t border-neutral-400 text-neutral-400 bg-neutral-950">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mx-auto px-4 py-8 max-w-5xl gap-12">
           <div>
-            <div className="font-bold text-4xl py-4 text-white">p3nc1l</div>
+            <div className="font-bold text-4xl py-4 text-white">David Szocs</div>
             <div className="max-w-xs">
               <div>SZŐCS DÁVID-SZILÁRD PERSOANĂ FIZICĂ AUTORIZATĂ</div>
               <div>CUI: 52262527</div>
@@ -50,7 +50,7 @@ const Footer = () => {
             {links.map((link, index) => <Link className="text-white" key={index} href={link.href}>{link.name}</Link>)}
           </div>
         </div>
-        <div className="text-center py-4">© 2025 p3nc1l. All rights reserved.</div>
+        <div className="text-center py-4">© 2025 David Szocs. All rights reserved.</div>
       </div>
     </footer>
   )

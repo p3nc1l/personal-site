@@ -9,8 +9,12 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: "P3nc1l's Site",
-  description: "Personal portfolio site of p3nc1l.",
+  title: {
+    default: "David Szocs - Web developer",
+    template: "%s - David Szocs"
+  },
+  description: "David Szocs - Freelance Web Developer specializing in modern, responsive websites and apps using React, Vite, and Next.js. Available for freelance projects worldwide.",
+  metadataBase: new URL("https://davidszocs.com")
 };
 
 export default function RootLayout({
