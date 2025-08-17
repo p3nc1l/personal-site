@@ -8,7 +8,7 @@ const Footer = () => {
   }, {
     label: "Email address",
     href: "mailto:szocsdavid598@gmail.com",
-    value: "szocsdavid598@gmail.com"
+    value: "david@davidszocs.com"
   }]
 
   const links = [{
