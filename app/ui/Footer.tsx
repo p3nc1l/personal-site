@@ -7,7 +7,7 @@ const Footer = () => {
     value: "+40 770 249 709"
   }, {
     label: "Email address",
-    href: "mailto:szocsdavid598@gmail.com",
+    href: "mailto:david@davidszocs.com",
     value: "david@davidszocs.com"
   }]
 
