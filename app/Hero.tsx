@@ -6,9 +6,9 @@ import { motion } from "motion/react";
 
 const Hero = () => {
   return (
-    <section className="overflow-hidden relative">
+    <section className="overflow-hidden flex flex-col justify-center grow relative">
       <motion.div 
-        className="px-4 py-36 max-w-7xl mx-auto" 
+        className="px-4 py-36 max-w-7xl mx-auto w-full" 
         initial={{y: "100%"}} 
         whileInView={{y: 0}} 
         transition={{type: "tween"}}
