@@ -10,7 +10,7 @@ type Project = {
 const projects: Project[] = [{
   name: "calorie-tracker",
   title: "Calorie Tracker",
-  imageUrls: ["/calorie-tracker.png"],
+  imageUrls: ["/calorie-tracker/home-page.png", "/calorie-tracker/foods-page-query.png", "/calorie-tracker/meal-editor.png", "/calorie-tracker/meals-page.png", "/calorie-tracker/profile-page.png"],
   shortDescription: "To keep track of your diet",
   longDescription: "",
   link: "calorie-tracker.p3nc1l.com"
