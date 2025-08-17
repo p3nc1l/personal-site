@@ -30,6 +30,8 @@ const Footer = () => {
             <div className="font-bold text-4xl py-4 text-white">p3nc1l</div>
             <div className="max-w-xs">
               <div>SZŐCS DÁVID-SZILÁRD PERSOANĂ FIZICĂ AUTORIZATĂ</div>
+              <div>CUI: 52262527</div>
+              
               <div>Bulevardul BUCUREȘTII NOI, Nr. 136, Etaj PARTER, Ap. 5</div>
               <div>Cod Poștal: 012366</div>
               <div>București Sectorul 1</div>
