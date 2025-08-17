@@ -27,24 +27,25 @@ const HeaderSidebarButton = (props: {toggleSidebar: React.Dispatch<React.SetStat
   }
 
   return (
-    <>
-      <motion.svg 
-        width={25} 
-        height={25} 
-        onClick={ChangeVariant}
-        className={"cursor-pointer"}
-        variants={{
-          menu: {rotate: 0},
-          close: {rotate: 90}
-        }}
-        animate={variant}
-      >
-        <IconPath variant={variant} closeOrientation="right" menuHeight={2} />
-        <IconPath variant={variant} closeOrientation="right" menuHeight={9} />
-        <IconPath variant={variant} closeOrientation="left" menuHeight={16} />
-        <IconPath variant={variant} closeOrientation="left" menuHeight={23} />
-      </motion.svg>
-    </>
+    <form action={ChangeVariant} className="flex">
+      <button type="submit">
+        <motion.svg 
+          width={25} 
+          height={25} 
+          className={"cursor-pointer"}
+          variants={{
+            menu: {rotate: 0},
+            close: {rotate: 90}
+          }}
+          animate={variant}
+        >
+          <IconPath variant={variant} closeOrientation="right" menuHeight={2} />
+          <IconPath variant={variant} closeOrientation="right" menuHeight={9} />
+          <IconPath variant={variant} closeOrientation="left" menuHeight={16} />
+          <IconPath variant={variant} closeOrientation="left" menuHeight={23} />
+        </motion.svg>
+      </button>
+    </form>
   )
 }
 
