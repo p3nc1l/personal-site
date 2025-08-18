@@ -9,7 +9,7 @@ const Breadcrumbs = (props: { breadcrumbs: {
   href: string
 }[] }) => {
   return (
-    <span>
+    <span className="text-lg">
       {props.breadcrumbs.map((breadcrumb, index) => 
       <>
         {index != 0 ? <Divider /> : <></>}
