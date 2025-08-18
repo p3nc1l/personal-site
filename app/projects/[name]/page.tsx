@@ -30,7 +30,7 @@ const Page = async (props: { params: Promise<{ name: string }> }) => {
           <div className="flex gap-1.5">
             {project.tags.map((tag, index) => <Tag key={index}>{tag}</Tag>)}
           </div>
-          <a href={project.link} className="w-full"><Button size="large" fullWidth>Visit Site</Button></a>
+          <a href={project.link} className="w-full"><Button size="large" fullWidth>VISIT SITE</Button></a>
         </div>
       </div>
       <p className="my-6 max-w-4xl px-2">{project.longDescription}</p>
