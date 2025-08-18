@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import projects from "../projects";
 import ImageCarousel from "@/app/ui/ImageCarousel";
+import Button from "@/app/ui/Button";
+import Tag from "@/app/ui/Tag";
 
 const Page = async (props: { params: Promise<{ name: string }> }) => {
   const { name } = await props.params;
@@ -11,12 +13,17 @@ const Page = async (props: { params: Promise<{ name: string }> }) => {
   return (
     <>
       <h1 className="mt-2 mb-8 text-4xl font-bold">{project.title}</h1>
-      <div className="flex gap-4 flex-col sm:flex-row">
-        <div className="grow-7"><ImageCarousel imageUrls={project.imageUrls} alt={project.title} /></div>
-        <div className="grow-3 flex flex-col gap-4 justify-center">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-[8fr_2fr]">
+        <ImageCarousel imageUrls={project.imageUrls} alt={project.title} />
+        <div className="flex flex-col gap-4">
           <div>{project.shortDescription}</div>
+          <div className="flex gap-1.5">
+            {project.tags.map((tag, index) => <Tag key={index}>{tag}</Tag>)}
+          </div>
+          <a href={project.link} className="w-full"><Button size="large" fullWidth>Visit Site</Button></a>
         </div>
       </div>
+      <p className="my-6">{project.longDescription}</p>
     </>
   )
 }
