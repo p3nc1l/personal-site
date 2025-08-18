@@ -3,15 +3,25 @@ import projects from "../projects";
 import ImageCarousel from "@/app/ui/ImageCarousel";
 import Button from "@/app/ui/Button";
 import Tag from "@/app/ui/Tag";
+import Breadcrumbs from "@/app/ui/Breadcrumbs";
 
 const Page = async (props: { params: Promise<{ name: string }> }) => {
   const { name } = await props.params;
   const project = projects.find(project => project.name == name);
 
   if (!project) notFound();
+
+  const breadcrumbs = [{
+    name: "Projects",
+    href: "/projects"
+  }, {
+    name: project.title,
+    href: `/projects/${name}`
+  }]
   
   return (
     <>
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
       <h1 className="mt-2 mb-8 text-4xl font-bold">{project.title}</h1>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-[8fr_2fr]">
         <ImageCarousel imageUrls={project.imageUrls} alt={project.title} />
