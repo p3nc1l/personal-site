@@ -33,7 +33,18 @@ const Page = async (props: { params: Promise<{ name: string }> }) => {
           <a href={project.link} className="w-full"><Button size="large" fullWidth>VISIT SITE</Button></a>
         </div>
       </div>
-      <p className="my-6 max-w-4xl px-2">{project.longDescription}</p>
+      <div className="my-6 max-w-4xl px-2 long-description" dangerouslySetInnerHTML={{ __html: project.longDescription }} />
+      <style>{`
+        .long-description {
+          a {
+            text-decoration: underline;
+          }
+          ul {
+            list-style: disc inside;
+          }
+        }
+        
+      `}</style>
     </>
   )
 }
