@@ -70,7 +70,7 @@ const HeaderSidebarButton = (props: {toggleSidebar: React.Dispatch<React.SetStat
   )
 }
 
-const HeaderSidebar = (props: {visible?: boolean}) => {
+const HeaderSidebar = (props: {visible?: boolean, close?: () => void}) => {
   const visible = props.visible || false;
 
   return (
@@ -84,7 +84,7 @@ const HeaderSidebar = (props: {visible?: boolean}) => {
       >
         <div className={"flex flex-col w-full"}>
           {navigationLinks.map((link, index) => 
-          <Link key={index} href={link.href}>
+          <Link key={index} href={link.href} onClick={props.close}>
             <div className="w-full px-4 py-4 text-2xl">{link.name}</div>
           </Link>
           )}
@@ -111,7 +111,7 @@ const Header = () => {
     <header className="sticky w-full top-0 z-1">
       <div className="w-full sm:p-2">
         <div className={`w-full px-6 sm:px-12 py-2 ${headerStyle} sm:rounded-xs flex justify-between items-center`}>
-          <Link href={"/"}>
+          <Link href={"/"} onClick={() => setSidebarVisible(false)}>
             <span className="font-bold text-2xl">David Szocs</span>
           </Link>
           <span className="hidden sm:inline"><HeaderNavigation /></span>
@@ -119,7 +119,7 @@ const Header = () => {
         </div>
       </div>
       <div className="relative">
-        <HeaderSidebar visible={sidebarVisible} />
+        <HeaderSidebar visible={sidebarVisible} close={() => setSidebarVisible(false)} />
       </div>
     </header>
   )
