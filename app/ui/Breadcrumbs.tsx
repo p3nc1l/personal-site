@@ -11,10 +11,10 @@ const Breadcrumbs = (props: { breadcrumbs: {
   return (
     <span className="text-lg">
       {props.breadcrumbs.map((breadcrumb, index) => 
-      <>
+      <span key={index}>
         {index != 0 ? <Divider /> : <></>}
         <Link href={breadcrumb.href}><u>{breadcrumb.name}</u></Link>
-      </>)}
+      </span>)}
     </span>
   )
 }
