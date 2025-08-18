@@ -23,7 +23,7 @@ const Page = async (props: { params: Promise<{ name: string }> }) => {
           <a href={project.link} className="w-full"><Button size="large" fullWidth>Visit Site</Button></a>
         </div>
       </div>
-      <p className="my-6">{project.longDescription}</p>
+      <p className="my-6 max-w-4xl px-2">{project.longDescription}</p>
     </>
   )
 }
