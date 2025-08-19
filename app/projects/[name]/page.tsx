@@ -21,7 +21,7 @@ const Page = async (props: { params: Promise<{ name: string }> }) => {
   
   return (
     <>
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <div className="my-2"><Breadcrumbs breadcrumbs={breadcrumbs} /></div>
       <h1 className="mt-2 mb-8 text-4xl font-bold">{project.title}</h1>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-[8fr_2fr]">
         <ImageCarousel imageUrls={project.imageUrls} alt={project.title} />
