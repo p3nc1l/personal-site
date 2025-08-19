@@ -42,7 +42,7 @@ const ImageCarousel = (props: { imageUrls: string[], alt: string }) => {
         }
         {props.imageUrls.map((image, index) => 
           <div key={index} className="w-full aspect-video bg-neutral-700 shrink-0 relative" ref={imageDivRef} >
-            <Image className="object-contain" fill src={image} alt={`${props.alt} #${index + 1}`} onPointerDown={e => dragControls.start(e)} />
+            <Image priority={index == 0 ? true : false} className="object-contain" fill src={image} alt={`${props.alt} #${index + 1}`} onPointerDown={e => dragControls.start(e)} />
           </div>
         )}
       </motion.div>
