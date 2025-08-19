@@ -7,7 +7,7 @@ import { motion, useDragControls, PanInfo } from "motion/react";
 const ImageButton = (props: {variant?: "previous" | "next", action?: () => void, disabled?: boolean}) => {
   return (
     <button className={`absolute top-[50%] -translate-y-1/2 ${props.disabled != true ? "cursor-pointer" : ""}`} disabled={props.disabled == true} onClick={props.action} style={props.variant == "previous" ? {left: "10px"} : {right: "10px"}}>
-      <div className="p-2 bg-black/30"><Image width={30} height={0} className={props.variant == "previous" ? "rotate-180" : ""} src={"/right-arrow.svg"} alt={props.variant == "previous" ? "Previous image" : "Next image"} /></div>
+      <div className="p-2 bg-black/30"><Image width={30} height={30} style={{ transform: `rotate(${props.variant == "previous" ? 180 : 0}deg)` }} src={"/right-arrow.svg"} alt={props.variant == "previous" ? "Previous image" : "Next image"} /></div>
     </button>
   )
 }
