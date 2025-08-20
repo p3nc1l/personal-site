@@ -35,6 +35,7 @@ const WipeOldMessages = () => {
 setInterval(WipeOldMessages, wipeFrequency);
 
 export const VerifyEmail = async (token: string): Promise<boolean> => {
+  console.log(messagesQueue);
   const message = messagesQueue.get(token);
   if (message == undefined || message.timestamp < Date.now() - messageLifetime) return false;
   messagesQueue.delete(token)
@@ -74,4 +75,5 @@ export const SendMessage = async (formData: FormData) => {
   catch (err) {
     console.error("An error occured while trying to send the verification email.", err);
   }
+  console.log(messagesQueue);
 }
