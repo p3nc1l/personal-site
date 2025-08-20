@@ -4,7 +4,7 @@ import { ReactNode } from "react"
 import { motion } from "motion/react";
 
 const Button = (props: { children?: ReactNode, size?: "small" | "normal" | "large", fullWidth?: boolean }) => {
-  const padding = props.size == "small" ? 2 : props.size == "large" ? 10 : 4;
+  const padding = props.size == "small" ? "0.25em" : props.size == "large" ? "1em" : "0.5em";
 
   return (
     <motion.span 
