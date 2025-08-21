@@ -1,14 +1,16 @@
+import { notFound } from "next/navigation";
 import { VerifyEmail } from "../actions";
+import VerifySection from "./VerifySection";
 
 const Page = async (props: { params: Promise<{ token: string }> }) => {
   const { token } = await props.params;
 
   if (await VerifyEmail(token)) return (
-    <div>Message sent!</div>
+    <VerifySection success={true} />
   )
-  else return (
-    <div>The link either can not be found or is expired!</div>
-  )
+  else {
+    notFound();
+  }
 }
 
 export default Page
