@@ -4,8 +4,6 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import { PrismaClient } from "@/generated/prisma";
 
-const prisma = new PrismaClient();
-
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: 465,
@@ -20,18 +18,21 @@ const messageLifetime = 1000 * 60 * 15; //15 minutes
 const wipeFrequency = 1000 * 60; //every minute
 
 const WipeOldMessages = () => {
+  const prisma = new PrismaClient();
   prisma.message.deleteMany({
     where: {
       timestamp: {
         lt: Date.now() - messageLifetime
       }
     }
-  })
+  });
+  prisma.$disconnect();
 }
 
 setInterval(WipeOldMessages, wipeFrequency);
 
 export const VerifyEmail = async (token: string): Promise<boolean> => {
+  const prisma = new PrismaClient();
   try {
     const message = await prisma.message.delete({
       where: {
@@ -51,10 +52,12 @@ export const VerifyEmail = async (token: string): Promise<boolean> => {
     console.error("There was an error sending the message!", err);
     return false;
   }
+  prisma.$disconnect();
 }
 
 export const SendMessage = async (formData: FormData) => {
   const token = crypto.randomBytes(32).toString("hex");
+  const prisma = new PrismaClient();
 
   try {
     await prisma.message.create({
@@ -77,4 +80,5 @@ export const SendMessage = async (formData: FormData) => {
   catch (err) {
     console.error("An error occured while trying to send the verification email.", err);
   }
+  prisma.$disconnect();
 }
