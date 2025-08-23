@@ -17,6 +17,22 @@ const transporter = nodemailer.createTransport({
 const messageLifetime = 1000 * 60 * 15; //15 minutes
 const wipeFrequency = 1000 * 60; //every minute
 
+const EmailTemplate = (link: string): string => {
+  return `
+    <table style="background-color: #111; color: #eee; border-spacing: 20px; font-size: 20px;">
+      <tr>
+        <td>In order for your message to be sent you need to verify the ownership of this email address. To complete the verification process, please click on the button down below:</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"><a href='${link}' style="text-decoration: none"><span style="display: inline-block; padding: 10px; background-color: #eee; color: #000; border-radius: 3px;">VERIFY</span></a></td>
+      </tr>
+      <tr>
+        <td>If you did not submit the contact form on my website, please ignore this email.</td>
+      </tr>
+    </table>
+  `;
+}
+
 const WipeOldMessages = () => {
   const prisma = new PrismaClient();
   prisma.message.deleteMany({
@@ -74,7 +90,8 @@ export const SendMessage = async (formData: FormData) => {
       from: `"No Reply - David Szocs" <${process.env.SMTP_USER}>`,
       to: formData.get("email") as string,
       subject: "Email address verification",
-      html: `${process.env.NEXT_PUBLIC_BASE_URL}/contact/${token}`
+      html: EmailTemplate(`${process.env.NEXT_PUBLIC_BASE_URL}/contact/${token}`),
+      text: `In order for your message to be sent you need to verify the ownership of this email address. To complete the verification process, please click on the link down below:\n\n${process.env.NEXT_PUBLIC_BASE_URL}/contact/${token}\n\nIf you did not submit the contact form on my website, please ignore this email.`
     });
   }
   catch (err) {
