@@ -1,27 +1,7 @@
 import contactInfo from "../contactInfo"
-import Button from "../ui/Button";
-import { SendMessage } from "./actions";
+import ContactForm from "./ContactForm";
 
 const Page = () => {
-  const inputFields = [{
-    name: "fullName",
-    label: "Full Name",
-    type: "text"
-  }, {
-    name: "email",
-    label: "Email address",
-    type: "email"
-  }, {
-    name: "subject",
-    label: "Subject",
-    type: "text"
-  }, {
-    name: "content",
-    label: "Message",
-    type: "multiline"
-  }]
-  const inputClasses = "border-neutral-400 border-1 p-2 rounded-sm bg-neutral-900 w-full";
-
   return (
     <>
       <section>
@@ -39,14 +19,7 @@ const Page = () => {
       <section>
         <div className="flex flex-col items-center gap-4 mb-8">
           <span className="text-3xl font-bold">Contact Form</span>
-          <form action={SendMessage} className="text-xl w-full max-w-2xl flex flex-col items-center gap-2">
-              {inputFields.map((field, index) => <label className="w-full" key={index}>
-                <div className="mb-1">{field.label}</div>
-                {field.type != "multiline" ? <input type={field.type} name={field.name} className={inputClasses} /> :
-                <textarea name={field.name} className={inputClasses + " " + "h-40"} />}
-              </label>)}
-              <div className="w-44"><button className="w-full" type="submit"><Button size="large" fullWidth>SUBMIT</Button></button></div>
-          </form>
+          <ContactForm />
         </div>
       </section>
     </>
