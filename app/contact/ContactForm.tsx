@@ -3,6 +3,18 @@
 import { useActionState } from "react";
 import { SendMessage } from "./actions";
 import Button from "../ui/Button";
+import type { MessageBoxData } from "./actions";
+
+const MessageBox = (props: { data: MessageBoxData }) => {
+  return (
+    <div 
+      className="max-w-xl text-black bg-neutral-300 border-1 border-neutral-500 text-lg p-2 rounded-sm"
+      style={props.data.error == true ? { backgroundColor: "var(--color-red-200)", color: "var(--color-red-600)", borderColor: "var(--color-red-600)" }: {}}
+    >
+      {props.data.message}
+    </div>
+  )
+}
 
 const InputField = (props: { name: string, type: string, label: string }) => {
   const styleClasses = "border-neutral-400 border-1 p-2 rounded-sm bg-neutral-900 w-full";
@@ -17,15 +29,16 @@ const InputField = (props: { name: string, type: string, label: string }) => {
 }
 
 const ContactForm = () => {
-  const [state, formAction, pending] = useActionState((_: void, formData: FormData) => SendMessage(formData), undefined)
+  const [state, formAction, pending] = useActionState((_: MessageBoxData | undefined, formData: FormData) => SendMessage(formData), undefined)
 
   return (
     <form action={formAction} className="text-xl w-full max-w-2xl flex flex-col items-center gap-2">
-        <InputField name={"fullName"} label="Name" type="text" />
-        <InputField name={"email"} label="Email address" type="email" />
-        <InputField name={"subject"} label="Subject" type="text" />
-        <InputField name={"content"} label="Message" type="multiline" />
-        <div className="w-44"><button className="w-full" type="submit"><Button size="large" fullWidth loading={pending}>SUBMIT</Button></button></div>
+      {state != undefined && <MessageBox data={state} />}
+      <InputField name={"fullName"} label="Name" type="text" />
+      <InputField name={"email"} label="Email address" type="email" />
+      <InputField name={"subject"} label="Subject" type="text" />
+      <InputField name={"content"} label="Message" type="multiline" />
+      <div className="w-44"><button className="w-full" type="submit"><Button size="large" fullWidth loading={pending}>SUBMIT</Button></button></div>
     </form>
   )
 }

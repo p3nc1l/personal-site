@@ -4,6 +4,11 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import { PrismaClient } from "@/generated/prisma";
 
+export type MessageBoxData = {
+  error?: boolean,
+  message: string
+}
+
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: 465,
@@ -71,7 +76,7 @@ export const VerifyEmail = async (token: string): Promise<boolean> => {
   prisma.$disconnect();
 }
 
-export const SendMessage = async (formData: FormData) => {
+export const SendMessage = async (formData: FormData): Promise<MessageBoxData> => {
   const token = crypto.randomBytes(32).toString("hex");
   const prisma = new PrismaClient();
 
@@ -93,9 +98,11 @@ export const SendMessage = async (formData: FormData) => {
       html: EmailTemplate(`${process.env.NEXT_PUBLIC_BASE_URL}/contact/${token}`),
       text: `In order for your message to be sent you need to verify the ownership of this email address. To complete the verification process, please click on the link down below:\n\n${process.env.NEXT_PUBLIC_BASE_URL}/contact/${token}\n\nIf you did not submit the contact form on my website, please ignore this email.`
     });
+    prisma.$disconnect();
+    return { message: `An email has been sent to your address to verify it's ownership. Please click on the link in the next ${messageLifetime / (1000 * 60)} minutes, before it expires.` };
   }
-  catch (err) {
-    console.error("An error occured while trying to send the verification email.", err);
+  catch {
+    prisma.$disconnect();
+    return { message: "A system error occurred while trying to send the verification email. Please try again later!", error: true }
   }
-  prisma.$disconnect();
 }
