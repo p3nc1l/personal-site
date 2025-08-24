@@ -20,6 +20,8 @@ const transporter = nodemailer.createTransport({
   }
 })
 
+const prisma = new PrismaClient();
+
 const messageLifetime = 1000 * 60 * 15; //15 minutes
 const wipeFrequency = 1000 * 60; //every minute
 
@@ -40,7 +42,6 @@ const EmailTemplate = (link: string): string => {
 }
 
 const WipeOldMessages = () => {
-  const prisma = new PrismaClient();
   prisma.message.deleteMany({
     where: {
       timestamp: {
@@ -48,13 +49,11 @@ const WipeOldMessages = () => {
       }
     }
   });
-  prisma.$disconnect();
 }
 
 setInterval(WipeOldMessages, wipeFrequency);
 
 export const VerifyEmail = async (token: string): Promise<boolean> => {
-  const prisma = new PrismaClient();
   try {
     const message = await prisma.message.delete({
       where: {
@@ -74,7 +73,6 @@ export const VerifyEmail = async (token: string): Promise<boolean> => {
     console.error("There was an error sending the message!", err);
     return false;
   }
-  prisma.$disconnect();
 }
 
 export const SendMessage = async (formData: FormData): Promise<MessageBoxData> => {
@@ -97,7 +95,6 @@ export const SendMessage = async (formData: FormData): Promise<MessageBoxData> =
   }
 
   try {
-    const prisma = new PrismaClient();
     await prisma.message.create({
       data: {
         content: submittedData.content,
@@ -108,7 +105,6 @@ export const SendMessage = async (formData: FormData): Promise<MessageBoxData> =
         timestamp: Date.now()
       }
     });
-    prisma.$disconnect();
     await transporter.sendMail({
       from: `"No Reply - David Szocs" <${process.env.SMTP_USER}>`,
       to: submittedData.email,
