@@ -2,7 +2,7 @@
 
 import crypto from "crypto";
 import nodemailer from "nodemailer";
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import * as z from "zod";
 
 export type MessageBoxData = {
